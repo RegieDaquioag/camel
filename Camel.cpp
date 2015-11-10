@@ -9,17 +9,46 @@
 using namespace std;
 
 void drink(int& water, int& thirsty);
+/*[
+Precondition:  Takes in parameters by reference
+Postcondition: Lets user drink water and keeps count of how many drinks are left
+Summary:  Necessary to keep player alive during the game
+*/
 void moderateSpeed(int& userDistance, int& thirsty, int& sleepy, int& themDistance); 
+/*[
+Precondition:  Takes in arguments by reference
+Postcondition:  It speeds up and advances certain miles
+Summary: As a result, people chasing you get closer, and you and your ride get tired.
+]*/
 void fullSpeed(int& userDistance, int& thirsty,int& sleepy, int& themDistance);
+/*[
+Precondition:  Takes in arguments by reference
+Postcondition:  It speeds up and advances user further miles than the moderate speed option.
+Summary:  People chasing you get farther behind and you can keep going forward.
+
+]*/
 void stop(int& sleepy, int& themDistance); 
+/*[
+Precondition: Takes in arguments by reference
+Postcondition:  It lets user rest as well as for their camel/ or appa.
+Summary: Necessary to keep playing
+]*/
 void status(int userDistance, int water, int themDistance); 
+/*[
+Precondition: Takes in arguments by reference
+Postcondition:  It lets user know the status of their game
+Summary:  Necessary to make strategic decisions.
+]*/
 void information(int& thirsty, int& sleepy, int& userDistance, int& themDistance, int& water, bool& finish);
-
-
+/*{
+Preconditions: Takes in arguments by reference
+Postconditon:  It informs the user of vital information that is happening during the game
+Summary:  Samething as postcondition
+}*/
 
 int main()
 {
- int thirst = 0;
+ int thirst = 0;// declaration of all variables used
  int tiredness = 0;
  int milesTraveled = 0;
  int nativeDistance = -20;
@@ -27,22 +56,22 @@ int main()
  bool done = false;
  char userInput;
  
- srand(time(0));
+ srand(time(0));// random number generator
  
- cout << "Welcome to Free the Flying Bison!" << endl;
+ cout << "Welcome to Free the Flying Bison!" << endl;// welcoming user to the game, and what they need to do
  cout << "You have taken your flying bison called Appa back from the Fire Nation, however you were seen spotted." << endl;
  cout << "The Fire Nation is trying to capture you and your bsion becuase you are the Avavtar, the last air bender." << endl;
  cout << "Try to survive the strom and make it back to your freinds in the Northern Water Tribe." << endl;
  cout << "Be warned, if you get stuck in the storm mulitple times you will get hit by lighting.\n" << endl;
  
- while( done == false)
+ while( done == false)// keeps going until game is over
  {
-   cout << "\nA. Drink from your canteen.\n"
-           "B. Ahead moderate speed.\n"
-           "C. Ahead full speed.\n"
-           "D. Stop and rest.\n"
-           "E. Status check.\n"
-           "Q. Quit.\n";
+   cout << "\nA. Drink from your canteen.\n";
+   cout << "B. Ahead moderate speed.\n";
+   cout << "C. Ahead full speed.\n";
+   cout << "D. Stop and rest.\n";
+   cout << "E. Status check.\n";
+   cout << "Q. Quit.\n";
            
    cin >> userInput;
    userInput = toupper( userInput);
@@ -50,7 +79,7 @@ int main()
    cout << " Your choice? " << userInput << endl;
  
    
-   switch( userInput)
+   switch( userInput)// switch dedicated to each input entered by the user
    {
      case 'A':
      {
@@ -112,7 +141,7 @@ void drink( int& water, int& thirsty)
 
 void moderateSpeed( int& userDistance, int& thirsty, int& sleepy, int& themDistance)
 {
-  int random1, random2;
+  int random1, random2;// random numbers used that make the game more interesting
   
   random1 = rand() % 8 + 5;
   random2 = rand() % 8 + 7;
@@ -199,7 +228,26 @@ void information(int& thirsty, int& sleepy, int& userDistance, int& themDistance
       finish = true;
     }
    
-  else if ( userDistance - themDistance <= 15)
+   else if (random1 == 6)
+    {
+        cout << " Oh, no!! You are stuck in a storm and it brought you back 9 miles" << endl;
+        
+        userDistance = userDistance- 9;
+        
+        storm++;
+    
+    }
+    
+    else if (storm == 7)
+    {
+        cout << " I am sorry, but you have been hit by thunder.\n"
+             << " You and Appa did not make it to your freinds\n";
+        
+        finish = true;
+        
+        
+    }
+  if ( userDistance - themDistance <= 15)
    {
      cout << " The Fire Nation is getting close.\n";
    }
@@ -222,28 +270,10 @@ void information(int& thirsty, int& sleepy, int& userDistance, int& themDistance
     
     }
     
-    if (random1 == 6)
-    {
-        cout << " Oh, no!! You are stuck in a storm and it brought you back 9 miles" << endl;
-        
-        userDistance = userDistance- 9;
-        
-        storm++;
-    
-    }
-    
-    if (storm == 7)
-    {
-        cout << " I am sorry, but you have been hit by thunder.\n"
-             << " You and Appa did not make it to your freinds\n";
-        
-        finish = true;
-        
-        
-    }
-    
  return;
 }
+
+
 
 
 
